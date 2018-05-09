@@ -6,6 +6,7 @@ wines distribution using a subset data
 
 import sys
 import datetime
+import os
 
 import pandas as pd
 import numpy as np
@@ -49,11 +50,19 @@ def plot_distribution(wine):
     ax.set_title('Distribution of Wine scores:  $\mu=88$, $\sigma=3$')
     ax.set_ylabel('Probability density')
     ax.set_xlabel('Points');
-
     fname = f'figures/fig01_distribution-wine-scores.png'
+    
+    try:
+        # try to save the figure
+        fig.savefig(fname, bbox_inches = 'tight')
+    except OSError as e:
+        # wowza! the directory does not exist
+        os.makedirs('figures')
+        print('Creating figures directory')
+        fig.savefig(fname, bbox_inches='tight')
 
     fig.savefig(fname, bbox_inches = 'tight')
-    return (fname)
+    return fname
 
 
 def plot_scatter(wine):

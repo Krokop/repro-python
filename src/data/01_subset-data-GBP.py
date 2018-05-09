@@ -47,7 +47,7 @@ def process_data_GBP(filename):
     # Saving the csv
     wine_keep.to_csv(fname)
 
-    return(fname)
+    return (fname)
 
 
 if __name__ == '__main__':
